@@ -81,7 +81,25 @@ Meteor.startup(function() {
 			} catch(e) {
 				throw new Meteor.Error(404, e);
 			}
-		} 
+		},
+		
+		twiml: function() {
+			var twilio = client;
+		  
+			resp = new twilio.TwimlResponse()
+			msg = 'Hello, thanks for using Meteor and Twilio! ' +
+				  'Here is another sentence for you with a period at the end. ' +
+				  'You should have noticed a slight pause at punctuation mark. ' +
+				  'This message should repeat twice. .'
+		  
+			resp.say({voice: 'man', loop: 2}, msg)
+				.pause({length: 1})
+				.say({voice: 'man'}, "Goodbye!")
+		  
+			res.statusCode = 200
+			res.setHeader("Content-Type", "text/xml")
+			res.end(resp.toString())
+		  }
 	});
 });
 
