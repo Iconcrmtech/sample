@@ -85,7 +85,7 @@ Meteor.startup(function() {
 		
 		twiml: function() {
 			var twilio = client;
-		  
+			//
 			resp = new twilio.TwimlResponse()
 			msg = 'Hello, thanks for using Meteor and Twilio! ' +
 				  'Here is another sentence for you with a period at the end. ' +
